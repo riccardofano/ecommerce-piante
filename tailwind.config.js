@@ -1,11 +1,21 @@
 module.exports = {
-  purge: ["./pages/**/*.ts", "./src/components/**/*.ts"],
   theme: {
+    container: {
+      center: true,
+      padding: "2.5rem",
+    },
+    screens: {
+      sm: "640px",
+      md: "768px",
+    },
     fontFamily: {
       sans: ["Quicksand", "Arial", "sans-serif"],
     },
-    extend: {},
+    extend: {
+      width: {
+        768: "768px",
+      },
+    },
   },
-  variants: {},
-  plugins: [],
+  purge: ["./pages/**/*.ts", "./src/components/**/*.ts"],
 };

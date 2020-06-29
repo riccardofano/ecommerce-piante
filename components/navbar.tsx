@@ -4,7 +4,7 @@ import shoppingCartLine from "@iconify/icons-clarity/shopping-cart-line";
 
 export default function Navbar() {
   return (
-    <header className="flex justify-between items-center py-4 font">
+    <header className="flex justify-between items-center py-4 container">
       <h1 className="text-lg">Piante</h1>
       <div className="flex">
         <InlineIcon height={18} className="mr-2" icon={searchLine} />

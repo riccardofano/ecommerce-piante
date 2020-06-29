@@ -10,9 +10,7 @@ export default function Home() {
         <title>Piante</title>
       </Head>
 
-      <div className="container mx-auto px-10">
-        <Navbar />
-      </div>
+      <Navbar />
       <Hero />
     </>
   );
