@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Navbar from "../components/navbar";
+import Hero from "../components/hero";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
 
       <div className="container mx-10">
         <Navbar />
+        <Hero />
       </div>
     </>
   );
