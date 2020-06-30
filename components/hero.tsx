@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <>
       <div
-        className="w-full md:w-768 lg:w-1024 h-64 bg-cover bg-center mx-auto"
+        className="w-full md:w-768 lg:w-1024 h-64 bg-cover bg-center mx-auto md:rounded"
         style={{ backgroundImage: `url(${hero})` }}
       >
         <div className="container pt-10 leading-tight">
