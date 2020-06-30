@@ -3,7 +3,9 @@ import Link from "next/link";
 export default function footer() {
   return (
     <section className="mt-20 text-center">
-      <p className="bg-gray-light cursor-pointer font-bold py-1">Torna su</p>
+      <p className="bg-gray-light hover:bg-gray-dark cursor-pointer font-bold py-1">
+        Torna su
+      </p>
 
       <div className="py-8 bg-gray-lighter">
         <div className="container flex flex-col row-gap-4 md:flex-row md:justify-around items-center text-sm md:text-base footer">
