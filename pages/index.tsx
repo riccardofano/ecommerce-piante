@@ -2,6 +2,7 @@ import Head from "next/head";
 import Navbar from "../components/navbar";
 import Hero from "../components/hero";
 import Categories from "../components/categories";
+import Delivery from "../components/delivery";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Hero />
       <div className="container">
         <Categories />
+        <Delivery />
       </div>
     </>
   );
