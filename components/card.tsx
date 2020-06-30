@@ -2,7 +2,7 @@ const plant = require("../public/plant1.jpg?resize&size=200");
 
 export default function card() {
   return (
-    <div>
+    <div className="md:text-lg">
       <img
         src={plant}
         alt=""

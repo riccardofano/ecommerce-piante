@@ -10,7 +10,7 @@ export default function Hero() {
         style={{ backgroundImage: `url(${hero})` }}
       >
         <div className="container pt-10 leading-tight">
-          <h1 className="text-2xl font-bold w-4/6">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold w-4/6 mb-2 md:mb-4">
             Aggiungi un tocco di vitalità alla tua casa
           </h1>
           <Btn>Compra ora</Btn>

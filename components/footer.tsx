@@ -6,7 +6,7 @@ export default function footer() {
       <p className="bg-gray-light cursor-pointer font-bold py-1">Torna su</p>
 
       <div className="py-8 bg-gray-lighter">
-        <div className="container flex flex-col row-gap-4 md:flex-row md:justify-around items-center">
+        <div className="container flex flex-col row-gap-4 md:flex-row md:justify-around items-center text-sm md:text-base">
           <div>
             <h1 className="font-bold uppercase">Aiuto</h1>
             <ul>

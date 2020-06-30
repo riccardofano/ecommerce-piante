@@ -4,7 +4,7 @@ interface buttonProps {
 
 export default function button({ children }: buttonProps) {
   return (
-    <button className="bg-green p-2 rounded mt-2 text-white text-center">
+    <button className="bg-green p-2 rounded text-white text-center md:text-lg">
       {children}
     </button>
   );
