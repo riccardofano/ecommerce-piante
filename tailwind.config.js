@@ -15,6 +15,15 @@ module.exports = {
       width: {
         768: "768px",
       },
+      colors: {
+        white: "#ffffff",
+        gray: {
+          lighter: "#eeeeee",
+          light: "#e5e5e5",
+          dark: "#a9b0a7",
+        },
+        green: "#49c78c",
+      },
     },
   },
   purge: ["./pages/**/*.ts", "./src/components/**/*.ts"],
