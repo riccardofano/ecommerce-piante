@@ -5,5 +5,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap");
 
 .categories div {
-  @apply p-4 rounded bg-cover bg-center;
+  @apply px-4 py-6 rounded bg-cover bg-center;
 }

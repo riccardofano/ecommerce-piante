@@ -13,7 +13,7 @@ module.exports = {
     },
     extend: {
       width: {
-        768: "768px",
+        768: "calc(768px - 5rem)",
       },
       colors: {
         white: "#ffffff",
