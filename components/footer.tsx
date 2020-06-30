@@ -6,7 +6,7 @@ export default function footer() {
       <p className="bg-gray-light cursor-pointer font-bold py-1">Torna su</p>
 
       <div className="py-8 bg-gray-lighter">
-        <div className="container flex flex-col row-gap-4 md:flex-row md:justify-around items-center text-sm md:text-base">
+        <div className="container flex flex-col row-gap-4 md:flex-row md:justify-around items-center text-sm md:text-base footer">
           <div>
             <h1 className="font-bold uppercase">Aiuto</h1>
             <ul>
@@ -35,21 +35,9 @@ export default function footer() {
           <div>
             <h1 className="font-bold uppercase">Contatti</h1>
             <ul>
-              <li>
-                <Link href="#">
-                  <a>Telefono: +39 1234 567 890</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="#">
-                  <a>Indirizzo: Via Roma, 1</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="#">
-                  <a>20121 Milano MI, Italia</a>
-                </Link>
-              </li>
+              <li>Telefono: +39 1234 567 890</li>
+              <li>Indirizzo: Via Roma, 1</li>
+              <li>20121 Milano MI, Italia</li>
               <li>
                 <Link href="#">
                   <a>email: piante@example.it</a>
