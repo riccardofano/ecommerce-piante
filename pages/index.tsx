@@ -4,6 +4,7 @@ import Hero from "../components/hero";
 import Categories from "../components/categories";
 import Delivery from "../components/delivery";
 import ProductList from "../components/productList";
+import Footer from "../components/footer";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         <Delivery />
         <ProductList />
       </div>
+      <Footer />
     </>
   );
 }
