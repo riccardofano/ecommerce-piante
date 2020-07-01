@@ -17,8 +17,11 @@ export default function Home() {
         <Hero />
         <div className="container">
           <Categories />
-          <Delivery />
-          <ProductList />
+          <Delivery
+            title="Spedizione gratuita"
+            subtitle="su tutti i nostri prodotti con importo superiore a 10,00€"
+          />
+          <ProductList title="Nuovi prodotti" />
         </div>
       </Layout>
     </>
