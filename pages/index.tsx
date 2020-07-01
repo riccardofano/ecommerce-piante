@@ -1,10 +1,9 @@
 import Head from "next/head";
-import Navbar from "../components/navbar";
+import Layout from "../components/layout";
 import Hero from "../components/hero";
 import Categories from "../components/categories";
 import Delivery from "../components/delivery";
 import ProductList from "../components/productList";
-import Footer from "../components/footer";
 
 export default function Home() {
   return (
@@ -14,14 +13,14 @@ export default function Home() {
         <title>Piante</title>
       </Head>
 
-      <Navbar />
-      <Hero />
-      <div className="container">
-        <Categories />
-        <Delivery />
-        <ProductList />
-      </div>
-      <Footer />
+      <Layout>
+        <Hero />
+        <div className="container">
+          <Categories />
+          <Delivery />
+          <ProductList />
+        </div>
+      </Layout>
     </>
   );
 }
