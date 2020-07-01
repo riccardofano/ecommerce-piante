@@ -1,6 +1,6 @@
-import Card from "../components/card";
+import Card from "./card";
 
-export default function productList() {
+export default function list() {
   return (
     <section>
       <h1 className="font-bold text-center text-xl md:text-2xl mt-10 mb-4">

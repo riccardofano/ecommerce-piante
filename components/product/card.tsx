@@ -1,4 +1,4 @@
-const plant = require("../public/plant1.jpg?resize&size=200");
+const plant = require("../../public/plant1.jpg?resize&size=200");
 
 export default function card() {
   return (

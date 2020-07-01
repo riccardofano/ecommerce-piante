@@ -3,7 +3,7 @@ import Layout from "../components/layout";
 import Hero from "../components/hero";
 import Categories from "../components/categories";
 import Delivery from "../components/delivery";
-import ProductList from "../components/productList";
+import ProductList from "../components/product/list";
 
 export default function Home() {
   return (
