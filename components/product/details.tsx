@@ -7,11 +7,11 @@ const image = require("../../public/plant1.jpg?resize&size=1500");
 export default function fullsize() {
   return (
     <>
-      <div className="text-2xl flex flex-col md:flex-row md:gap-3">
+      <div className="text-2xl flex flex-col md:flex-row md:gap-3 md:relative">
         <img
           src={image}
           alt=""
-          className="rounded md:w-1/2 md:max-h-3/4 self-start"
+          className="rounded md:w-1/2 md:max-h-3/4 self-start md:sticky md:top-0"
         />
         <div className="md:flex-1">
           <h1>Pianta</h1>
