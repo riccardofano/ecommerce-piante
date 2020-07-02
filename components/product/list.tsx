@@ -1,11 +1,12 @@
 import Card from "./card";
+import { Product } from "../../model/product";
 
 interface listProps {
   title: string;
-  amount?: number;
+  products: Product[];
 }
 
-export default function list({ title, amount }: listProps) {
+export default function list({ title, products }: listProps) {
   return (
     <section>
       {title ? (
@@ -14,10 +15,9 @@ export default function list({ title, amount }: listProps) {
         </h1>
       ) : null}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 row-gap-4">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {products.map((product) => (
+          <Card key={product.sku} {...product} />
+        ))}
       </div>
     </section>
   );

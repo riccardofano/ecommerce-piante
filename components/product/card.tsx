@@ -1,15 +1,15 @@
-const plant = require("../../public/plant1.jpg?resize&size=200");
+import { Product } from "../../model/product";
 
-export default function card() {
+export default function card({ name, price, salePrice, imageUrl }: Product) {
   return (
     <div className="md:text-lg">
       <img
-        src={plant}
-        alt=""
+        src={require(`../../public${imageUrl}?resize&size=200`)}
+        alt={`Immagine di ${name}`}
         className="rounded object-cover object-center min-w-full"
       />
-      <h1 className="font-bold mt-2">14,99€</h1>
-      <p>Pianta 1</p>
+      <h1 className="font-bold mt-2">{price}€</h1>
+      <p>{name}</p>
     </div>
   );
 }
