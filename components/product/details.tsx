@@ -1,10 +1,17 @@
 import { Product } from "../../model/product";
+import { formatCurrencyString } from "use-shopping-cart";
 
 import AddToCart from "./addToCart";
 import List from "./list";
 import Delivery from "../delivery";
 
-export default function details({ name, price, details, imageUrl }: Product) {
+export default function details({
+  name,
+  price,
+  details,
+  imageUrl,
+  currency,
+}: Product) {
   return (
     <>
       <div className="text-2xl flex flex-col md:flex-row md:gap-3 md:relative">
@@ -15,7 +22,9 @@ export default function details({ name, price, details, imageUrl }: Product) {
         />
         <div className="md:flex-1">
           <h1>{name}</h1>
-          <h2 className="font-bold inline-block mr-4">{price}€</h2>
+          <h2 className="font-bold inline-block mr-4">
+            {formatCurrencyString({ value: price, currency })}
+          </h2>
           <p className="text-lg md:text-xl align-text-bottom inline-block">
             iva inclusa
           </p>
