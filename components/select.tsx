@@ -1,5 +1,3 @@
-import { Field } from "formik";
-
 const options = [
   { value: "1", label: "1" },
   { value: "2", label: "2" },
@@ -7,10 +5,7 @@ const options = [
 ];
 export default function select() {
   return (
-    <Field
-      as="select"
-      className="rounded border border-gray-light px-4 text-lg"
-    >
+    <select className="rounded border border-gray-light px-4 text-lg">
       {options.map((option) => {
         return (
           <option key={option.value} value={option.value}>
@@ -18,6 +13,6 @@ export default function select() {
           </option>
         );
       })}
-    </Field>
+    </select>
   );
 }

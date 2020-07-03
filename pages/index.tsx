@@ -16,11 +16,6 @@ interface homeProps {
 export default function Home({ products }: homeProps) {
   return (
     <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Piante</title>
-      </Head>
-
       <Layout>
         <Hero />
         <div className="container">
