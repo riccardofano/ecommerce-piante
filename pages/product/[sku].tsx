@@ -28,7 +28,7 @@ export default function product({ product }: productProps) {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const sku = ctx.params?.sku;
   const db = await openDB();
-  const product = await db.get<Product | null>(
+  const product = await db.get<Product | undefined>(
     "SELECT * FROM Product where sku = ?",
     sku
   );
