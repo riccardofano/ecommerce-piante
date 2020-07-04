@@ -7,11 +7,11 @@ interface addToCartProps {
 
 export default function addToCart({ handleClick }: addToCartProps) {
   return (
-    <form className="flex gap-3 mt-10">
+    <div className="flex gap-3 mt-10">
       <Select></Select>
       <Btn handleClick={handleClick} className="flex-1">
         Aggiungi al carrello
       </Btn>
-    </form>
+    </div>
   );
 }

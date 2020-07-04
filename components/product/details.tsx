@@ -14,13 +14,12 @@ export default function details({
   currency,
 }: Product) {
   const { addItem, cartCount } = useShoppingCart();
-  const image = require(`../../public${imageUrl}?resize&size=1500`);
 
   return (
     <>
       <div className="text-2xl flex flex-col md:flex-row md:gap-3 md:relative">
         <img
-          src={image}
+          src={require(`../../public${imageUrl}?resize&size=1500`)}
           alt={`immagine di ${name}`}
           className="rounded md:w-1/2 md:max-h-3/4 self-start md:sticky md:top-0"
         />
@@ -47,7 +46,7 @@ export default function details({
                 sku: sku.toString(),
                 price,
                 currency,
-                image,
+                image: imageUrl,
               })
             }
           />

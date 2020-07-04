@@ -16,7 +16,7 @@ export default function cart() {
       <article key={sku}>
         <img
           width={200}
-          src={cartEntry.image?.src}
+          src={require(`../public${cartEntry.image}?resize&size=200`)}
           alt={`Immagine di ${cartEntry.name}`}
         />
         <h1>{cartEntry.name}</h1>
