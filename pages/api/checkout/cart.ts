@@ -17,13 +17,14 @@ export default async function handler(
     try {
       const db = await openDB();
       const products = await db.all("SELECT * FROM Product");
-      const inventory: Product[] = products.map((p) => ({
-        sku: p.sku.toString(),
-        name: p.name,
-        price: p.salePrice ? p.salePrice : p.price,
-        currency: p.currency,
-        image: p.imageUrl,
-      }));
+      const inventory: Product[] = products.map((p) => {
+        return {
+          sku: p.sku.toString(),
+          name: p.name,
+          price: p.salePrice ? p.salePrice : p.price,
+          currency: p.currency,
+        };
+      });
 
       // Validate the cart details that were sent from the client.
       const cartItems = req.body;

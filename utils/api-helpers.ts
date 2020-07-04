@@ -24,7 +24,6 @@ export async function fetchPostJSON(url: string, data?: {}) {
       referrerPolicy: "no-referrer",
       body: JSON.stringify(data || {}),
     });
-    console.log(response);
     return await response.json();
   } catch (err) {
     throw new Error(err.message);
