@@ -8,7 +8,13 @@ interface SearchProps {
 export default function Search({ types }: SearchProps) {
   return (
     <div>
-      <pre>{JSON.stringify(types, null, 4)}</pre>
+      <select name="types" id="types">
+        {types.map((type, i) => (
+          <option value={type.type} key={i}>
+            {type.type}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }
