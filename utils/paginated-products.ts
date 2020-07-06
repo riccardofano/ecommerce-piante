@@ -6,6 +6,8 @@ import { Product } from "../model/product";
 const mainQuery = `
     FROM Product
     WHERE (@type is NULL OR @type = type)
+    AND (@price is NULL OR @price >= price)
+    AND (@dimension is NULL OR @dimension >= dimension)
 `;
 
 export async function getPaginatedProducts(query: ParsedUrlQuery) {
@@ -17,7 +19,14 @@ export async function getPaginatedProducts(query: ParsedUrlQuery) {
 
   const dbParams = {
     "@type": getValueStr(query.type),
+    "@price":
+      getValueNumber(query.price) === null
+        ? null
+        : getValueNumber(query.price)! * 100,
+    "@dimension": getValueNumber(query.dimensions),
   };
+
+  console.log(dbParams);
 
   const productPromise = db.all<Product[]>(
     `SELECT * ${mainQuery} LIMIT @rowsPerPage OFFSET @offset`,

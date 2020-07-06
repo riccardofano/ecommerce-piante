@@ -23,8 +23,13 @@ export default function Search({ types, products, totalPages }: SearchProps) {
   const { query } = useRouter();
   const [serverQuery] = useState(query);
 
+  const priceRange = [5, 10, 15, 20, 25, 30, 50];
+  const dimensionRange = [8, 12, 16, 20, 24, 28, 36];
+
   const initialValues = {
     type: getAsString(query.type) || "all",
+    price: getAsString(query.price) || "all",
+    dimensions: getAsString(query.dimensions) || "all",
   };
 
   const fetcher = (url: string) => fetch(url).then((r) => r.json());
@@ -64,6 +69,36 @@ export default function Search({ types, products, totalPages }: SearchProps) {
               {types.map(({ type }, i) => (
                 <option value={type} key={i}>
                   {type}
+                </option>
+              ))}
+            </Field>
+            <Field
+              as="select"
+              name="price"
+              onChange={(e: React.FormEvent) => {
+                props.handleChange(e);
+                props.submitForm();
+              }}
+            >
+              <option value="all">Prezzo</option>
+              {priceRange.map((price, i) => (
+                <option value={price} key={i}>
+                  {price}
+                </option>
+              ))}
+            </Field>
+            <Field
+              as="select"
+              name="dimensions"
+              onChange={(e: React.FormEvent) => {
+                props.handleChange(e);
+                props.submitForm();
+              }}
+            >
+              <option value="all">Dimensione</option>
+              {dimensionRange.map((dimension, i) => (
+                <option value={dimension} key={i}>
+                  {dimension}
                 </option>
               ))}
             </Field>
