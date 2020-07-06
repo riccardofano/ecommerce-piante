@@ -2,6 +2,7 @@ interface buttonProps {
   children: React.ReactNode;
   className?: string;
   type?: "submit";
+  disabled?: boolean;
   handleClick?: () => void;
 }
 
@@ -10,9 +11,10 @@ export default function button({
   className,
   type,
   handleClick,
+  disabled,
 }: buttonProps) {
-  const classes =
-    "bg-green p-2 rounded text-white text-center text-base md:text-lg";
+  const color = disabled ? "bg-gray" : "bg-green";
+  const classes = `${color} p-2 rounded text-white text-center text-base md:text-lg`;
   return (
     <button
       onClick={handleClick}

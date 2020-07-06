@@ -3,6 +3,8 @@ import { fetchPostJSON } from "../utils/api-helpers";
 import { useState, useEffect } from "react";
 
 import CartDetails from "../components/cartDetails";
+import Layout from "../components/layout";
+import Btn from "../components/button";
 
 export default function cart() {
   const {
@@ -31,23 +33,34 @@ export default function cart() {
   };
 
   return (
-    <div>
-      <CartDetails />
-
-      <form onSubmit={handleCheckout}>
-        <h2>Cart summary</h2>
-        {/* This is where we'll render our cart */}
-        <p suppressHydrationWarning>
-          <strong>Number of Items:</strong> {cartCount}
-        </p>
-        <p suppressHydrationWarning>
-          <strong>Total:</strong> {formattedTotalPrice}
-        </p>
-
-        <button type="submit" disabled={cartEmpty}>
-          Checkout
-        </button>
-      </form>
-    </div>
+    <Layout>
+      <section className="container">
+        <h1 className="font-bold text-xl md:text-2xl text-center mb-4">
+          Carrello
+        </h1>
+        <CartDetails />
+        <form onSubmit={handleCheckout}>
+          <div className="p-4 my-4 rounded border border-gray-lighter">
+            <h2 className="font-bold text-center">Totale</h2>
+            <p suppressHydrationWarning className="flex justify-between">
+              <span>Subtotale</span> <span>{formattedTotalPrice}</span>
+            </p>
+            <p suppressHydrationWarning className="flex justify-between">
+              <span>Spedizione</span> <span>0,00€</span>
+            </p>
+            <p
+              suppressHydrationWarning
+              className="font-bold flex justify-between"
+            >
+              <span>Totale (IVA inclusa)</span>{" "}
+              <span>{formattedTotalPrice}</span>
+            </p>
+          </div>
+          <Btn type="submit" disabled={cartEmpty} className="w-full">
+            Paga
+          </Btn>
+        </form>
+      </section>
+    </Layout>
   );
 }
