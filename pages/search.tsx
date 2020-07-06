@@ -1,5 +1,6 @@
 import { Type, getTypes } from "../utils/search-options-helpers";
 import { getPaginatedProducts } from "../utils/paginated-products";
+import { getAsString } from "../utils/get-as-string";
 
 import { Product } from "../model/product";
 
@@ -23,7 +24,7 @@ export default function Search({ types, products, totalPages }: SearchProps) {
   const [serverQuery] = useState(query);
 
   const initialValues = {
-    type: query.type || "all",
+    type: getAsString(query.type) || "all",
   };
 
   const fetcher = (url: string) => fetch(url).then((r) => r.json());

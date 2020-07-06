@@ -14,7 +14,3 @@ export async function getTypes() {
     `);
   return types;
 }
-
-export function getAsString(value: string | string[]) {
-  return Array.isArray(value) ? value[0] : value;
-}
