@@ -30,6 +30,7 @@ export default function Search({ types, products, totalPages }: SearchProps) {
     type: getAsString(query.type) || "all",
     price: getAsString(query.price) || "all",
     dimensions: getAsString(query.dimensions) || "all",
+    search: getAsString(query.search) || "",
   };
 
   const fetcher = (url: string) => fetch(url).then((r) => r.json());
@@ -57,6 +58,7 @@ export default function Search({ types, products, totalPages }: SearchProps) {
       >
         {(props) => (
           <form onSubmit={props.handleSubmit}>
+            <Field placeholder="Cerca prodotto" name="search" />
             <Field
               as="select"
               name="type"
@@ -83,7 +85,7 @@ export default function Search({ types, products, totalPages }: SearchProps) {
               <option value="all">Prezzo</option>
               {priceRange.map((price, i) => (
                 <option value={price} key={i}>
-                  {price}
+                  Meno di {price} €
                 </option>
               ))}
             </Field>
@@ -98,7 +100,7 @@ export default function Search({ types, products, totalPages }: SearchProps) {
               <option value="all">Dimensione</option>
               {dimensionRange.map((dimension, i) => (
                 <option value={dimension} key={i}>
-                  {dimension}
+                  Meno di {dimension} cm
                 </option>
               ))}
             </Field>

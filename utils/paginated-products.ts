@@ -5,7 +5,8 @@ import { Product } from "../model/product";
 
 const mainQuery = `
     FROM Product
-    WHERE (@type is NULL OR @type = type)
+    WHERE (@search is NULL OR INSTR(name, @search))
+    AND (@type is NULL OR @type = type)
     AND (@price is NULL OR @price >= price)
     AND (@dimension is NULL OR @dimension >= dimension)
 `;
@@ -24,6 +25,7 @@ export async function getPaginatedProducts(query: ParsedUrlQuery) {
         ? null
         : getValueNumber(query.price)! * 100,
     "@dimension": getValueNumber(query.dimensions),
+    "@search": getValueStr(query.search),
   };
 
   console.log(dbParams);
