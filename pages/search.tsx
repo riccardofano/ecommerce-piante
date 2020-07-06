@@ -1,13 +1,15 @@
 import { Type, getTypes } from "../utils/search-options-helpers";
-import { GetServerSideProps } from "next";
-import { Field, Formik } from "formik";
-import router, { useRouter } from "next/router";
 import { getPaginatedProducts } from "../utils/paginated-products";
+
 import { Product } from "../model/product";
-import useSWR from "swr";
+
 import { useState } from "react";
-import { stringify } from "querystring";
+import { GetServerSideProps } from "next";
+import router, { useRouter } from "next/router";
 import Link from "next/link";
+import useSWR from "swr";
+import { stringify } from "querystring";
+import { Field, Formik } from "formik";
 import deepEqual from "fast-deep-equal";
 
 interface SearchProps {
@@ -49,7 +51,14 @@ export default function Search({ types, products, totalPages }: SearchProps) {
       >
         {(props) => (
           <form onSubmit={props.handleSubmit}>
-            <Field as="select" name="type">
+            <Field
+              as="select"
+              name="type"
+              onChange={(e: React.FormEvent) => {
+                props.handleChange(e);
+                props.submitForm();
+              }}
+            >
               <option value="all">Tipologia</option>
               {types.map(({ type }, i) => (
                 <option value={type} key={i}>
@@ -57,7 +66,6 @@ export default function Search({ types, products, totalPages }: SearchProps) {
                 </option>
               ))}
             </Field>
-            <button type="submit">Submit</button>
             {data ? (
               <pre>{JSON.stringify(data, null, 4)}</pre>
             ) : (
