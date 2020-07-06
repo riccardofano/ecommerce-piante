@@ -28,8 +28,6 @@ export async function getPaginatedProducts(query: ParsedUrlQuery) {
     "@search": getValueStr(query.search),
   };
 
-  console.log(dbParams);
-
   const productPromise = db.all<Product[]>(
     `SELECT * ${mainQuery} LIMIT @rowsPerPage OFFSET @offset`,
     {
