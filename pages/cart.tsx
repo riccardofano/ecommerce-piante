@@ -40,20 +40,18 @@ export default function cart() {
         </h1>
         <CartDetails />
         <form onSubmit={handleCheckout}>
-          <div className="p-4 my-4 rounded border border-gray-lighter">
+          <div className="p-4 mt-10 mb-4 rounded border border-gray-lighter">
             <h2 className="font-bold text-center">Totale</h2>
-            <p suppressHydrationWarning className="flex justify-between">
-              <span>Subtotale</span> <span>{formattedTotalPrice}</span>
+            <p className="flex justify-between">
+              <span>Subtotale</span>{" "}
+              <span suppressHydrationWarning>{formattedTotalPrice}</span>
             </p>
-            <p suppressHydrationWarning className="flex justify-between">
+            <p className="flex justify-between">
               <span>Spedizione</span> <span>0,00€</span>
             </p>
-            <p
-              suppressHydrationWarning
-              className="font-bold flex justify-between"
-            >
+            <p className="font-bold flex justify-between">
               <span>Totale (IVA inclusa)</span>{" "}
-              <span>{formattedTotalPrice}</span>
+              <span suppressHydrationWarning>{formattedTotalPrice}</span>
             </p>
           </div>
           <Btn type="submit" disabled={cartEmpty} className="w-full">
