@@ -4,6 +4,7 @@ import { formatCurrencyString, useShoppingCart } from "use-shopping-cart";
 import AddToCart from "./addToCart";
 import List from "./list";
 import Delivery from "../delivery";
+import { useState, useEffect } from "react";
 
 export default function details({
   sku,
@@ -13,7 +14,11 @@ export default function details({
   imageUrl,
   currency,
 }: Product) {
-  const { addItem, cartCount } = useShoppingCart();
+  const { addItem } = useShoppingCart();
+  const [formattedPrice, setFormattedPrice] = useState("");
+  useEffect(() => {
+    setFormattedPrice(formatCurrencyString({ value: price, currency }));
+  }, []);
 
   return (
     <>
@@ -25,17 +30,7 @@ export default function details({
         />
         <div className="md:flex-1">
           <h1>{name}</h1>
-          <h2 className="font-bold inline-block mr-4">
-            {/* If the language is not set to `en-US`
-            I will get value mismatch error between
-            the server `€xx.xx` and
-            the client `xx,xx €` renders */}
-            {formatCurrencyString({
-              value: price,
-              currency,
-              language: "en-US",
-            })}
-          </h2>
+          <h2 className="font-bold inline-block mr-4">{formattedPrice}</h2>
           <p className="text-lg md:text-xl align-text-bottom inline-block">
             iva inclusa
           </p>
