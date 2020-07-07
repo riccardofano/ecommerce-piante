@@ -45,8 +45,10 @@ export default function cart() {
             style={{ top: "2rem" }}
             onSubmit={handleCheckout}
           >
-            <div className="p-4  md:mt-0 mb-4 rounded border border-gray-lighter">
-              <h2 className="font-bold text-center">Totale</h2>
+            <div className="p-4 md:mt-0 mb-4 rounded border border-gray-lighter">
+              <h1 className="font-bold text-center text-lg md:text-xl">
+                Totale
+              </h1>
               <p className="flex justify-between">
                 <span>Subtotale</span>{" "}
                 <span suppressHydrationWarning>{formattedTotalPrice}</span>
