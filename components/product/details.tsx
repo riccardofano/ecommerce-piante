@@ -4,21 +4,14 @@ import { formatCurrencyString, useShoppingCart } from "use-shopping-cart";
 import AddToCart from "./addToCart";
 import List from "./list";
 import Delivery from "../delivery";
-import { useState, useEffect } from "react";
 
-export default function details({
-  sku,
-  name,
-  price,
-  details,
-  imageUrl,
-  currency,
-}: Product) {
+interface DetailsProps {
+  product: Product;
+  relatedProducts: Product[];
+}
+export default function Details({ product, relatedProducts }: DetailsProps) {
+  const { sku, name, price, details, imageUrl, currency } = product;
   const { addItem } = useShoppingCart();
-  const [formattedPrice, setFormattedPrice] = useState("");
-  useEffect(() => {
-    setFormattedPrice(formatCurrencyString({ value: price, currency }));
-  }, []);
 
   return (
     <>
@@ -30,7 +23,9 @@ export default function details({
         />
         <div className="md:flex-1">
           <h1>{name}</h1>
-          <h2 className="font-bold inline-block mr-4">{formattedPrice}</h2>
+          <h2 className="font-bold inline-block mr-4" suppressHydrationWarning>
+            {formatCurrencyString({ value: price, currency })}
+          </h2>
           <p className="text-lg md:text-xl align-text-bottom inline-block">
             iva inclusa
           </p>
@@ -56,7 +51,7 @@ export default function details({
         </div>
       </div>
       {/* TODO: get related items from tag */}
-      {/* <List title="Prodotti correlati" /> */}
+      <List title="Prodotti correlati" products={relatedProducts} />
     </>
   );
 }

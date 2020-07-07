@@ -7,9 +7,10 @@ import Details from "../../components/product/details";
 
 interface productProps {
   product: Product | null | undefined;
+  relatedProducts: Product[];
 }
 
-export default function product({ product }: productProps) {
+export default function product({ product, relatedProducts }: productProps) {
   // TODO: make better error page
   if (!product) {
     return <h1>Non è stato possibile trovare questo prodotto</h1>;
@@ -18,7 +19,7 @@ export default function product({ product }: productProps) {
     <>
       <Layout>
         <div className="container">
-          <Details {...product} />
+          <Details product={product} relatedProducts={relatedProducts} />
         </div>
       </Layout>
     </>
@@ -33,5 +34,17 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     sku
   );
 
-  return { props: { product: product || null } };
+  const relatedProducts = await db.all<Product[] | undefined>(
+    `SELECT * FROM Product
+     WHERE (@type = type)
+     AND NOT (@sku = sku)
+     ORDER BY ROWID ASC LIMIT 4`,
+    {
+      "@type": product?.type,
+      "@sku": product?.sku,
+    }
+  );
+  console.log(`relatedProducts: `, relatedProducts);
+
+  return { props: { product: product || null, relatedProducts } };
 };

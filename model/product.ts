@@ -6,4 +6,5 @@ export interface Product {
   currency: string;
   price: number;
   salePrice?: number;
+  type: "fiorita" | "aromatica" | "grassa";
 }
