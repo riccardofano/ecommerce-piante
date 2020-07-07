@@ -13,7 +13,7 @@ export default function button({
   handleClick,
   disabled,
 }: buttonProps) {
-  const color = disabled ? "bg-gray" : "bg-green";
+  const color = disabled ? "bg-gray-dark cursor-not-allowed" : "bg-green";
   const classes = `${color} p-2 rounded text-white text-center text-base md:text-lg`;
   return (
     <button
