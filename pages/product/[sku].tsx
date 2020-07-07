@@ -4,6 +4,7 @@ import { Product } from "../../model/product";
 
 import Layout from "../../components/layout";
 import Details from "../../components/product/details";
+import Link from "next/link";
 
 interface productProps {
   product: Product | null | undefined;
@@ -11,15 +12,26 @@ interface productProps {
 }
 
 export default function product({ product, relatedProducts }: productProps) {
-  // TODO: make better error page
-  if (!product) {
-    return <h1>Non è stato possibile trovare questo prodotto</h1>;
-  }
   return (
     <>
       <Layout>
         <div className="container">
-          <Details product={product} relatedProducts={relatedProducts} />
+          {product ? (
+            <Details product={product} relatedProducts={relatedProducts} />
+          ) : (
+            <>
+              <h1 className="mt-10 font-bold text-xl md:text-2xl text-center">
+                Non è stato possibile trovare questo prodotto.
+              </h1>
+              <Link href="/">
+                <a className="">
+                  <p className="mt-4 text-lg md:text-xl text-center underline hover:text-gray-dark">
+                    Torna alla homepage
+                  </p>
+                </a>
+              </Link>
+            </>
+          )}
         </div>
       </Layout>
     </>
