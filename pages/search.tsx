@@ -3,6 +3,8 @@ import { getPaginatedProducts } from "../utils/paginated-products";
 import { getAsString } from "../utils/get-as-string";
 
 import { Product } from "../model/product";
+import List from "../components/product/list";
+import Filters from "../components/filters";
 
 import { useState } from "react";
 import { GetServerSideProps } from "next";
@@ -10,8 +12,9 @@ import router, { useRouter } from "next/router";
 import Link from "next/link";
 import useSWR from "swr";
 import { stringify } from "querystring";
-import { Field, Formik } from "formik";
 import deepEqual from "fast-deep-equal";
+import { Formik } from "formik";
+import Layout from "../components/layout";
 
 interface SearchProps {
   types: Type[];
@@ -22,9 +25,6 @@ interface SearchProps {
 export default function Search({ types, products, totalPages }: SearchProps) {
   const { query } = useRouter();
   const [serverQuery] = useState(query);
-
-  const priceRange = [5, 10, 15, 20, 25, 30, 50];
-  const dimensionRange = [8, 12, 16, 20, 24, 28, 36];
 
   const initialValues = {
     type: getAsString(query.type) || "all",
@@ -42,92 +42,59 @@ export default function Search({ types, products, totalPages }: SearchProps) {
   });
 
   return (
-    <>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={(values) => {
-          router.replace(
-            {
-              pathname: "/search",
-              query: { ...values, page: 1 },
-            },
-            undefined,
-            { shallow: true }
-          );
-        }}
-      >
-        {(props) => (
-          <form onSubmit={props.handleSubmit}>
-            <Field placeholder="Cerca prodotto" name="search" />
-            <Field
-              as="select"
-              name="type"
-              onChange={(e: React.FormEvent) => {
-                props.handleChange(e);
-                props.submitForm();
-              }}
-            >
-              <option value="all">Tipologia</option>
-              {types.map(({ type }, i) => (
-                <option value={type} key={i}>
-                  {type}
-                </option>
-              ))}
-            </Field>
-            <Field
-              as="select"
-              name="price"
-              onChange={(e: React.FormEvent) => {
-                props.handleChange(e);
-                props.submitForm();
-              }}
-            >
-              <option value="all">Prezzo</option>
-              {priceRange.map((price, i) => (
-                <option value={price} key={i}>
-                  Meno di {price} €
-                </option>
-              ))}
-            </Field>
-            <Field
-              as="select"
-              name="dimensions"
-              onChange={(e: React.FormEvent) => {
-                props.handleChange(e);
-                props.submitForm();
-              }}
-            >
-              <option value="all">Dimensione</option>
-              {dimensionRange.map((dimension, i) => (
-                <option value={dimension} key={i}>
-                  Meno di {dimension} cm
-                </option>
-              ))}
-            </Field>
-            {data ? (
-              <pre>{JSON.stringify(data, null, 4)}</pre>
-            ) : (
-              <h1>No data</h1>
-            )}
-          </form>
-        )}
-      </Formik>
-      {data ? (
-        <div>
-          {new Array(data.totalPages).fill(1).map((_, id) => (
-            <Link
-              key={id}
-              href={{
+    <Layout>
+      <div className="container">
+        <h1 className="font-bold text-center text-xl md:text-2xl mb-4">
+          {getAsString(query.search) || "Risultati della ricerca"}
+        </h1>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={(values) => {
+            router.replace(
+              {
                 pathname: "/search",
-                query: { ...query, page: id + 1 },
-              }}
-            >
-              <a>{id + 1}</a>
-            </Link>
-          ))}
-        </div>
-      ) : null}
-    </>
+                query: { ...values, page: 1 },
+              },
+              undefined,
+              { shallow: true }
+            );
+          }}
+        >
+          {(props) => <Filters props={props} types={types} />}
+        </Formik>
+        {data ? (
+          <div className="mt-4">
+            <List products={data.products} />
+            <div className="flex gap-2 items-center mt-10">
+              {new Array(data.totalPages).fill(1).map((_, id) => (
+                <Link
+                  key={id}
+                  href={{
+                    pathname: "/search",
+                    query: { ...query, page: id + 1 },
+                  }}
+                >
+                  <a>
+                    <p
+                      className={`w-6 h-6 text-center text-base md:text-lg leading-6 ${
+                        parseInt(getAsString(query.page) || "1") === id + 1
+                          ? "bg-green-dark text-white rounded hover:bg-green-light"
+                          : "hover:underline"
+                      }
+                    `}
+                    >
+                      {id + 1}
+                    </p>
+                  </a>
+                </Link>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <h1>No data</h1>
+        )}
+      </div>
+    </Layout>
   );
 }
 
