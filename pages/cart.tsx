@@ -38,10 +38,13 @@ export default function cart() {
         <h1 className="font-bold text-xl md:text-2xl text-center mb-4">
           Carrello
         </h1>
-        <div className="flex flex-col md:flex-row gap-4 relative">
+        <div className="flex flex-col md:flex-row gap-4 md:relative">
           <CartDetails />
-          <form className="md:w-2/5" onSubmit={handleCheckout}>
-            <div className="p-4 mt-10 md:mt-0 sticky mb-4 rounded border border-gray-lighter">
+          <form
+            className="md:w-2/5 md:sticky md:top-0 self-start"
+            onSubmit={handleCheckout}
+          >
+            <div className="p-4 mt-10 md:mt-0 mb-4 rounded border border-gray-lighter">
               <h2 className="font-bold text-center">Totale</h2>
               <p className="flex justify-between">
                 <span>Subtotale</span>{" "}
