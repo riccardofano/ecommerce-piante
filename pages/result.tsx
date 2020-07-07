@@ -3,28 +3,54 @@ import { useRouter } from "next/router";
 
 import useSWR from "swr";
 import { useEffect } from "react";
-import { fetchGetJSON } from "../utils/api-helpers";
 import { useShoppingCart } from "use-shopping-cart";
+import Layout from "../components/layout";
+import Link from "next/link";
 
 const ResultPage: NextPage = () => {
   const router = useRouter();
   const { clearCart } = useShoppingCart();
   useEffect(() => clearCart(), [clearCart]);
 
-  const { data, error } = useSWR(
-    router.query.session_id ? `/api/checkout/${router.query.session_id}` : null,
-    fetchGetJSON
-  );
-
-  if (error) return <div>failed to load</div>;
+  const fetcher = (url: string) => fetch(url).then((r) => r.json());
+  const { data } = useSWR(`/api/checkout/${router.query.session_id}`, fetcher);
 
   return (
-    <div className="page-container">
-      <h1>Checkout Payment Result</h1>
-      <h2>Status: {data?.payment_intent?.status ?? "loading..."}</h2>
-      <h3>CheckoutSession response:</h3>
-      <pre>{JSON.stringify(data) ?? "loading..."}</pre>
-    </div>
+    <Layout>
+      <div className="container">
+        {data?.statusCode === 500 ? (
+          <>
+            <h1 className="mt-10 font-bold text-xl md:text-2xl text-center">
+              Qualcosa è andato storto.
+            </h1>
+            <Link href="/">
+              <a className="">
+                <p className="mt-4 text-lg md:text-xl text-center underline hover:text-gray-dark">
+                  Torna alla homepage
+                </p>
+              </a>
+            </Link>
+          </>
+        ) : data ? (
+          <div>
+            <h1 className="mt-10 font-bold text-xl md:text-2xl text-center">
+              Complimenti il pagamento è andato a buon fine!
+            </h1>
+            <Link href="/">
+              <a className="">
+                <p className="mt-4 text-lg md:text-xl text-center underline hover:text-gray-dark">
+                  Torna alla homepage
+                </p>
+              </a>
+            </Link>
+          </div>
+        ) : (
+          <h1 className="mt-10 font-bold text-xl md:text-2xl text-center">
+            Caricamento...
+          </h1>
+        )}
+      </div>
+    </Layout>
   );
 };
 

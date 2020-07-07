@@ -1,15 +1,3 @@
-export async function fetchGetJSON(url: string) {
-  try {
-    const data = await fetch(url).then((res) => {
-      console.log(res);
-      return res.json();
-    });
-    return data;
-  } catch (err) {
-    throw new Error(err.message);
-  }
-}
-
 export async function fetchPostJSON(url: string, data?: {}) {
   try {
     const response = await fetch(url, {
