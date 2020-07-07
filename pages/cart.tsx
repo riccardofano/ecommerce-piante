@@ -38,26 +38,28 @@ export default function cart() {
         <h1 className="font-bold text-xl md:text-2xl text-center mb-4">
           Carrello
         </h1>
-        <CartDetails />
-        <form onSubmit={handleCheckout}>
-          <div className="p-4 mt-10 mb-4 rounded border border-gray-lighter">
-            <h2 className="font-bold text-center">Totale</h2>
-            <p className="flex justify-between">
-              <span>Subtotale</span>{" "}
-              <span suppressHydrationWarning>{formattedTotalPrice}</span>
-            </p>
-            <p className="flex justify-between">
-              <span>Spedizione</span> <span>0,00€</span>
-            </p>
-            <p className="font-bold flex justify-between">
-              <span>Totale (IVA inclusa)</span>{" "}
-              <span suppressHydrationWarning>{formattedTotalPrice}</span>
-            </p>
-          </div>
-          <Btn type="submit" disabled={cartEmpty} className="w-full">
-            Paga
-          </Btn>
-        </form>
+        <div className="flex flex-col md:flex-row gap-4 relative">
+          <CartDetails />
+          <form className="md:w-2/5" onSubmit={handleCheckout}>
+            <div className="p-4 mt-10 md:mt-0 sticky mb-4 rounded border border-gray-lighter">
+              <h2 className="font-bold text-center">Totale</h2>
+              <p className="flex justify-between">
+                <span>Subtotale</span>{" "}
+                <span suppressHydrationWarning>{formattedTotalPrice}</span>
+              </p>
+              <p className="flex justify-between">
+                <span>Spedizione</span> <span>0,00€</span>
+              </p>
+              <p className="font-bold flex justify-between">
+                <span>Totale (IVA inclusa)</span>{" "}
+                <span suppressHydrationWarning>{formattedTotalPrice}</span>
+              </p>
+            </div>
+            <Btn type="submit" disabled={cartEmpty} className="w-full">
+              Paga
+            </Btn>
+          </form>
+        </div>
       </section>
     </Layout>
   );

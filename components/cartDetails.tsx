@@ -22,7 +22,7 @@ export default function CartDetails() {
     tempCart.push(
       <article key={sku} className="flex gap-4 mb-4">
         <img
-          className="object-cover bg-cover w-1/3 rounded"
+          className="object-cover w-24 rounded flex-none"
           src={require(`../public${cartEntry.image}?resize&size=200`)}
           alt={`Immagine di ${cartEntry.name}`}
         />
@@ -66,5 +66,5 @@ export default function CartDetails() {
     );
   }
 
-  return <section>{cart}</section>;
+  return <section className="flex-1">{cart}</section>;
 }
