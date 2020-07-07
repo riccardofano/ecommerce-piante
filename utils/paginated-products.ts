@@ -5,7 +5,7 @@ import { Product } from "../model/product";
 
 const mainQuery = `
     FROM Product
-    WHERE (@search is NULL OR INSTR(name, @search))
+    WHERE (@search is NULL OR INSTR(LOWER(name), LOWER(@search)))
     AND (@type is NULL OR @type = type)
     AND (@price is NULL OR @price >= price)
     AND (@dimension is NULL OR @dimension >= dimension)
