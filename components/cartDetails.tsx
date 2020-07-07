@@ -30,9 +30,8 @@ export default function CartDetails() {
           <h1>{cartEntry.name}</h1>
           <p className="font-bold">{cartEntry.formattedValue}</p>
 
-          <div className="flex justify-center gap-2 border border-gray-lighter px-1 rounded">
+          <div className="flex justify-center gap-3 border border-gray-lighter px-1 rounded">
             <button
-              className="font-bold"
               onClick={() => decrementItem(cartEntry.sku)}
               aria-label={`Rimuovi un ${cartEntry.name} dal tuo carrello`}
             >
@@ -40,7 +39,6 @@ export default function CartDetails() {
             </button>
             <p>{cartEntry.quantity}</p>
             <button
-              className="font-bold"
               onClick={() => incrementItem(cartEntry.sku)}
               aria-label={`Rimuovi un ${cartEntry.name} dal tuo carrello`}
             >
