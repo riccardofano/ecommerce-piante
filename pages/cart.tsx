@@ -41,10 +41,11 @@ export default function cart() {
         <div className="flex flex-col md:flex-row gap-4 md:relative">
           <CartDetails />
           <form
-            className="md:w-2/5 md:sticky md:top-0 self-start"
+            className="w-full md:w-2/5 md:sticky md:top-0 self-start"
+            style={{ top: "2rem" }}
             onSubmit={handleCheckout}
           >
-            <div className="p-4 mt-10 md:mt-0 mb-4 rounded border border-gray-lighter">
+            <div className="p-4  md:mt-0 mb-4 rounded border border-gray-lighter">
               <h2 className="font-bold text-center">Totale</h2>
               <p className="flex justify-between">
                 <span>Subtotale</span>{" "}
