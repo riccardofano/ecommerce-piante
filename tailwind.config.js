@@ -29,6 +29,9 @@ module.exports = {
           dark: "#49c78c",
         },
       },
+      boxShadow: {
+        "inner-lg": "inset 0 0px 45px 0 rgba(0, 0, 0, 0.2)",
+      },
     },
   },
   purge: ["./pages/**/*.ts", "./src/components/**/*.ts"],

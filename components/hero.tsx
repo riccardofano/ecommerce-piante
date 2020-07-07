@@ -1,4 +1,5 @@
 import Btn from "../components/button";
+import Link from "next/link";
 
 const hero = require("../public/hero.jpg?resize&size=1000");
 
@@ -13,7 +14,11 @@ export default function Hero() {
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold w-4/6 mb-2 md:mb-4">
             Aggiungi un tocco di vitalità alla tua casa
           </h1>
-          <Btn>Compra ora</Btn>
+          <Link href="/search">
+            <a>
+              <Btn>Compra ora</Btn>
+            </a>
+          </Link>
         </div>
       </div>
     </>
