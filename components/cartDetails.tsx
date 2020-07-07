@@ -2,6 +2,7 @@ import { useShoppingCart } from "use-shopping-cart";
 import { useState, useEffect } from "react";
 import InlineIcon from "@iconify/react";
 import trashLine from "@iconify/icons-clarity/trash-line";
+import Link from "next/link";
 
 export default function CartDetails() {
   const {
@@ -27,7 +28,11 @@ export default function CartDetails() {
           alt={`Immagine di ${cartEntry.name}`}
         />
         <div className="flex flex-col items-start">
-          <h1>{cartEntry.name}</h1>
+          <Link href={`/product/${cartEntry.sku}`}>
+            <a className="hover:underline">
+              <h1>{cartEntry.name}</h1>
+            </a>
+          </Link>
           <p className="font-bold">{cartEntry.formattedValue}</p>
 
           <div className="flex justify-center gap-3 border border-gray-lighter px-1 rounded">
