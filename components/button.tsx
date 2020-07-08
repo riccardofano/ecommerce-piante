@@ -10,7 +10,6 @@ export default function button({
   children,
   className,
   type,
-  handleClick,
   disabled,
 }: buttonProps) {
   const color = disabled
@@ -19,7 +18,6 @@ export default function button({
   const classes = `${color} p-2 rounded text-white text-center text-base md:text-lg`;
   return (
     <button
-      onClick={handleClick}
       type={type}
       className={className ? `${classes} ${className}` : classes}
     >

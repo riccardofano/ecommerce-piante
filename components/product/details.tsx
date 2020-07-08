@@ -4,6 +4,7 @@ import { formatCurrencyString, useShoppingCart } from "use-shopping-cart";
 import AddToCart from "./addToCart";
 import List from "./list";
 import Delivery from "../delivery";
+import { Formik } from "formik";
 
 interface DetailsProps {
   product: Product;
@@ -12,6 +13,14 @@ interface DetailsProps {
 export default function Details({ product, relatedProducts }: DetailsProps) {
   const { sku, name, price, details, imageUrl, currency } = product;
   const { addItem } = useShoppingCart();
+  const initialValues = {
+    quantity: 1,
+  };
+  const options = [
+    { value: 1, label: "1" },
+    { value: 2, label: "2" },
+    { value: 3, label: "3" },
+  ];
 
   return (
     <>
@@ -29,17 +38,25 @@ export default function Details({ product, relatedProducts }: DetailsProps) {
           <p className="text-lg md:text-xl align-text-bottom inline-block">
             iva inclusa
           </p>
-          <AddToCart
-            handleClick={() =>
-              addItem({
-                name,
-                sku: sku.toString(),
-                price,
-                currency,
-                image: imageUrl,
-              })
-            }
-          />
+          <Formik
+            initialValues={initialValues}
+            onSubmit={({ quantity }) => {
+              addItem(
+                {
+                  name,
+                  sku: sku.toString(),
+                  price,
+                  currency,
+                  image: imageUrl,
+                },
+                quantity
+              );
+            }}
+          >
+            {(props) => (
+              <AddToCart options={options} handleSubmit={props.handleSubmit} />
+            )}
+          </Formik>
           <Delivery
             title="Consegna prevista per:"
             subtitle="lunedì, 29.06 - lunedì 06.07"
@@ -50,7 +67,6 @@ export default function Details({ product, relatedProducts }: DetailsProps) {
           </div>
         </div>
       </div>
-      {/* TODO: get related items from tag */}
       <List title="Prodotti correlati" products={relatedProducts} />
     </>
   );

@@ -1,17 +1,22 @@
 import Select from "../select";
 import Btn from "../button";
+import { Field } from "formik";
 
 interface addToCartProps {
-  handleClick?: () => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  options: {
+    value: number;
+    label: string;
+  }[];
 }
 
-export default function addToCart({ handleClick }: addToCartProps) {
+export default function addToCart({ options, handleSubmit }: addToCartProps) {
   return (
-    <div className="flex gap-3 mt-10">
-      <Select></Select>
-      <Btn handleClick={handleClick} className="flex-1">
+    <form className="flex gap-3 mt-10" onSubmit={handleSubmit}>
+      <Field name="quantity" component={Select} options={options} />
+      <Btn className="flex-1" type="submit">
         Aggiungi al carrello
       </Btn>
-    </div>
+    </form>
   );
 }
