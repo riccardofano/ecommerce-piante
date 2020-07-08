@@ -34,7 +34,7 @@ export default function Filters({ types, handleSubmit }: FiltersInterface) {
   ];
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="flex justify-center gap-4">
       {/* TODO: put search field in navbar */}
       {/* <Field placeholder="Cerca prodotto" name="search" /> */}
       <Field

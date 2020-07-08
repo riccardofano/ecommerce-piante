@@ -13,7 +13,12 @@ interface addToCartProps {
 export default function addToCart({ options, handleSubmit }: addToCartProps) {
   return (
     <form className="flex gap-3 mt-10" onSubmit={handleSubmit}>
-      <Field name="quantity" component={Select} options={options} />
+      <Field
+        className="w-1/4 lg:w-1/5 text-center"
+        name="quantity"
+        component={Select}
+        options={options}
+      />
       <Btn className="flex-1" type="submit">
         Aggiungi al carrello
       </Btn>

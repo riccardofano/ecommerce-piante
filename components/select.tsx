@@ -9,6 +9,7 @@ interface Option {
 interface SelectFieldProps extends FieldProps {
   options: Option[];
   submit?: boolean;
+  className?: string;
 }
 
 export default function SelectField({
@@ -16,6 +17,7 @@ export default function SelectField({
   field,
   form,
   submit,
+  className,
 }: SelectFieldProps) {
   const value = (options
     ? options.find((option) => option.value.toString() === field.value)
@@ -34,7 +36,23 @@ export default function SelectField({
         form.setFieldValue(field.name, (option as Option).value);
         submit ? form.submitForm() : null;
       }}
+      styles={{
+        indicatorSeparator: () => ({
+          display: "none",
+        }),
+      }}
       onBlur={field.onBlur}
+      className={className}
+      theme={(theme) => ({
+        ...theme,
+        colors: {
+          ...theme.colors,
+          primary: "#49c78c",
+          primary75: "#81e3b5",
+          primary50: "#81e3b5",
+          primary25: "#bef0d9",
+        },
+      })}
     />
   );
 }
