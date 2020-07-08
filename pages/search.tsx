@@ -60,7 +60,9 @@ export default function Search({ types, products, totalPages }: SearchProps) {
             );
           }}
         >
-          {(props) => <Filters props={props} types={types} />}
+          {({ handleSubmit }) => (
+            <Filters types={types} handleSubmit={handleSubmit} />
+          )}
         </Formik>
         {data ? (
           <div className="mt-4">

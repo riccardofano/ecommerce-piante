@@ -1,63 +1,63 @@
-import { FormikProps, Field } from "formik";
+import Select from "./select";
+import { Field } from "formik";
 import { Type } from "../utils/search-options-helpers";
 
 interface FiltersInterface {
-  props: FormikProps<any>;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   types: Type[];
 }
 
-export default function Filters({ props, types }: FiltersInterface) {
+export default function Filters({ types, handleSubmit }: FiltersInterface) {
   const priceRange = [5, 10, 15, 20, 25, 30, 50];
   const dimensionRange = [8, 12, 16, 20, 24, 28, 36];
 
+  const priceOptions = [
+    { value: "all", label: "Prezzo" },
+    ...priceRange.map((v) => ({
+      value: v,
+      label: `Meno di ${v} €`,
+    })),
+  ];
+  const dimensionOptions = [
+    { value: "all", label: "Dimensioni" },
+    ...dimensionRange.map((v) => ({
+      value: v,
+      label: `Meno di ${v} cm`,
+    })),
+  ];
+  const typeOptions = [
+    { value: "all", label: "Tipologia" },
+    ...types.map((v) => ({
+      value: v.type,
+      label: `Pianta ${v.type}`,
+    })),
+  ];
+
   return (
-    <form onSubmit={props.handleSubmit}>
-      <Field placeholder="Cerca prodotto" name="search" />
+    <form onSubmit={handleSubmit}>
+      {/* TODO: put search field in navbar */}
+      {/* <Field placeholder="Cerca prodotto" name="search" /> */}
       <Field
-        as="select"
+        className="flex-1"
         name="type"
-        onChange={(e: React.FormEvent) => {
-          props.handleChange(e);
-          props.submitForm();
-        }}
-      >
-        <option value="all">Tipologia</option>
-        {types.map(({ type }, i) => (
-          <option value={type} key={i}>
-            {type}
-          </option>
-        ))}
-      </Field>
+        component={Select}
+        options={typeOptions}
+        submit
+      />
       <Field
-        as="select"
+        className="flex-1"
         name="price"
-        onChange={(e: React.FormEvent) => {
-          props.handleChange(e);
-          props.submitForm();
-        }}
-      >
-        <option value="all">Prezzo</option>
-        {priceRange.map((price, i) => (
-          <option value={price} key={i}>
-            Meno di {price} €
-          </option>
-        ))}
-      </Field>
+        component={Select}
+        options={priceOptions}
+        submit
+      />
       <Field
-        as="select"
+        className="flex-1"
         name="dimensions"
-        onChange={(e: React.FormEvent) => {
-          props.handleChange(e);
-          props.submitForm();
-        }}
-      >
-        <option value="all">Dimensione</option>
-        {dimensionRange.map((dimension, i) => (
-          <option value={dimension} key={i}>
-            Meno di {dimension} cm
-          </option>
-        ))}
-      </Field>
+        component={Select}
+        options={dimensionOptions}
+        submit
+      />
     </form>
   );
 }

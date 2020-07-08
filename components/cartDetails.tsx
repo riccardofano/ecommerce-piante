@@ -42,7 +42,7 @@ export default function CartDetails() {
             >
               -
             </button>
-            <p>{JSON.stringify(cartEntry.quantity)}</p>
+            <p>{cartEntry.quantity}</p>
             <button
               onClick={() => incrementItem(cartEntry.sku)}
               aria-label={`Rimuovi un ${cartEntry.name} dal tuo carrello`}
