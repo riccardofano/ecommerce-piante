@@ -56,7 +56,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       "@sku": product?.sku,
     }
   );
-  console.log(`relatedProducts: `, relatedProducts);
 
   return { props: { product: product || null, relatedProducts } };
 };
