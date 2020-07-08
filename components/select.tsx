@@ -28,6 +28,7 @@ export default function SelectField({
       // give instance id to remove hydration error
       // might be a problem if there are more than one select boxes
       instanceId={1}
+      defaultValue={options[0]}
       value={value}
       onChange={(option: ValueType<Option>): void => {
         form.setFieldValue(field.name, (option as Option).value);
