@@ -15,15 +15,19 @@ export default function Navbar() {
 
   return (
     <header className="flex justify-between items-center py-4 container text-lg md:text-2xl">
-      <h1 className="text-lg md:text-xl">
+      <h1 className="text-lg md:text-xl hover:text-green-dark">
         <Link href="/">
-          <a>Piante</a>
+          <a title="Homepage">Piante</a>
         </Link>
       </h1>
       <div className="flex">
-        <InlineIcon className="mr-2 md:mr-6" icon={searchLine} />
+        <Link href="/search">
+          <a title="Cerca..." className="hover:text-green-dark">
+            <InlineIcon className="mr-2 md:mr-6" icon={searchLine} />
+          </a>
+        </Link>
         <Link href="/cart">
-          <a>
+          <a title="Carrello" className="hover:text-green-dark">
             {cartEmpty ? (
               <InlineIcon icon={shoppingCartLine} />
             ) : (
