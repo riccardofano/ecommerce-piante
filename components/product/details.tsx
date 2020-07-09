@@ -61,7 +61,10 @@ export default function Details({ product, relatedProducts }: DetailsProps) {
                 draggable: false,
                 transition: Slide,
                 progressStyle: { background: "#49c78c" },
-                bodyStyle: { color: "#000" },
+                bodyStyle: {
+                  color: "#000",
+                  fontFamily: "Quicksand, Arial, sans-serif",
+                },
               });
             }}
           >
