@@ -1,5 +1,6 @@
 import { Product } from "../../model/product";
 import { formatCurrencyString, useShoppingCart } from "use-shopping-cart";
+import { toast, Slide } from "react-toastify";
 
 import AddToCart from "./addToCart";
 import List from "./list";
@@ -51,6 +52,17 @@ export default function Details({ product, relatedProducts }: DetailsProps) {
                 },
                 quantity
               );
+              const message =
+                quantity === 1
+                  ? "È stato aggiunto un prodotto al carrello."
+                  : `Sono stati aggiunti ${quantity} prodotti al carrello.`;
+              toast(message, {
+                position: "top-right",
+                draggable: false,
+                transition: Slide,
+                progressStyle: { background: "#49c78c" },
+                bodyStyle: { color: "#000" },
+              });
             }}
           >
             {(props) => (

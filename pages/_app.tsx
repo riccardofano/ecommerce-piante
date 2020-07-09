@@ -1,5 +1,6 @@
 import { AppProps } from "next/app";
 import "../styles/index.css";
+import "react-toastify/dist/ReactToastify.css";
 
 import { loadStripe } from "@stripe/stripe-js";
 import { CartProvider } from "use-shopping-cart";

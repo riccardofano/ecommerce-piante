@@ -5,6 +5,7 @@ import { Product } from "../../model/product";
 import Layout from "../../components/layout";
 import Details from "../../components/product/details";
 import Link from "next/link";
+import { ToastContainer } from "react-toastify";
 
 interface productProps {
   product: Product | null | undefined;
@@ -14,6 +15,7 @@ interface productProps {
 export default function product({ product, relatedProducts }: productProps) {
   return (
     <>
+      <ToastContainer />
       <Layout>
         <div className="container">
           {product ? (
