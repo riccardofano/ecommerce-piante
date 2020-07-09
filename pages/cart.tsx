@@ -38,10 +38,10 @@ export default function cart() {
         <h1 className="font-bold text-xl md:text-2xl text-center mb-4">
           Carrello
         </h1>
-        <div className="flex flex-col md:flex-row gap-4 md:relative">
+        <div className="flex flex-col md:flex-row md:relative">
           <CartDetails />
           <form
-            className="w-full md:w-2/5 md:sticky md:top-0 self-start"
+            className="w-full md:w-2/5 mt-4 md:mt-0 md:sticky md:top-0 self-start"
             style={{ top: "2rem" }}
             onSubmit={handleCheckout}
           >

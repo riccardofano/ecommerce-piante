@@ -6,7 +6,7 @@ const aromatiche = require("../public/aromatiche.jpg?resize=500");
 
 export default function Categories() {
   return (
-    <section className="grid grid-cols-2 gap-3 mt-10 md:grid-cols-5 categories text-center">
+    <section className="grid grid-cols-2 gap-4 mt-10 md:grid-cols-5 categories text-center">
       <div
         className="col-span-2 md:col-span-3 md:row-span-2 hover:shadow-inner-lg transition-shadow ease-in-out duration-150"
         style={{ backgroundImage: `url(${fiorite})` }}

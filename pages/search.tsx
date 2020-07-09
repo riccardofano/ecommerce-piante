@@ -67,7 +67,7 @@ export default function Search({ types, products, totalPages }: SearchProps) {
         {data ? (
           <div className="mt-4">
             <List products={data.products} />
-            <div className="flex gap-2 items-center mt-10">
+            <div className="flex items-center mt-10">
               {new Array(data.totalPages).fill(1).map((_, id) => (
                 <Link
                   key={id}
@@ -78,7 +78,7 @@ export default function Search({ types, products, totalPages }: SearchProps) {
                 >
                   <a>
                     <p
-                      className={`w-6 h-6 text-center text-base md:text-lg leading-6 ${
+                      className={`w-6 h-6 mr-2 text-center text-base md:text-lg leading-6 ${
                         parseInt(getAsString(query.page) || "1") === id + 1
                           ? "bg-green-dark text-white rounded hover:bg-green-light"
                           : "hover:underline"

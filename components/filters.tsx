@@ -36,19 +36,19 @@ export default function Filters({ types, handleSubmit }: FiltersInterface) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col md:flex-row justify-center gap-4"
+      className="flex flex-col md:flex-row justify-center"
     >
       {/* TODO: put search field in navbar */}
       {/* <Field placeholder="Cerca prodotto" name="search" /> */}
       <Field
-        className="flex-1"
+        className="flex-1 mr-4"
         name="type"
         component={Select}
         options={typeOptions}
         submit
       />
       <Field
-        className="flex-1"
+        className="flex-1 mr-4"
         name="price"
         component={Select}
         options={priceOptions}

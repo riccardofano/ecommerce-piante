@@ -21,8 +21,8 @@ export default function footer() {
   ];
   return (
     <section className="mt-20 text-center py-8 bg-gray-lighter">
-      <div className="container flex flex-col row-gap-4 md:flex-row md:justify-around items-center text-sm md:text-base footer">
-        <div>
+      <div className="container flex flex-col md:flex-row md:justify-around items-center text-sm md:text-base footer">
+        <div className="mb-4 md:mb-0">
           <Link href="/about">
             <a>
               <h1 className="font-bold uppercase hover:underline">Aiuto</h1>

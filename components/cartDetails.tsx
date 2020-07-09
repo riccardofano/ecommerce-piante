@@ -21,9 +21,9 @@ export default function CartDetails() {
     const cartEntry = cartDetails[sku];
 
     tempCart.push(
-      <article key={sku} className="flex gap-4 mb-4">
+      <article key={sku} className="flex mb-4">
         <img
-          className="object-cover w-24 rounded flex-none"
+          className="object-cover w-24 rounded flex-none mr-4"
           src={require(`../public${cartEntry.image}?resize&size=200`)}
           alt={`Immagine di ${cartEntry.name}`}
         />
@@ -35,14 +35,14 @@ export default function CartDetails() {
           </Link>
           <p className="font-bold">{cartEntry.formattedValue}</p>
 
-          <div className="flex justify-center gap-3 border border-gray-lighter px-1 rounded">
+          <div className="flex justify-center border border-gray-lighter px-1 rounded">
             <button
               onClick={() => decrementItem(cartEntry.sku)}
               aria-label={`Rimuovi un ${cartEntry.name} dal tuo carrello`}
             >
               -
             </button>
-            <p>{cartEntry.quantity}</p>
+            <p className="mx-3">{cartEntry.quantity}</p>
             <button
               onClick={() => incrementItem(cartEntry.sku)}
               aria-label={`Rimuovi un ${cartEntry.name} dal tuo carrello`}
@@ -51,10 +51,10 @@ export default function CartDetails() {
             </button>
           </div>
 
-          <div className="flex gap-2 items-center mt-2">
+          <div className="flex items-center mt-2">
             <InlineIcon
               icon={trashLine}
-              className="text-sm md:text-base text-gray-dark"
+              className="text-sm mr-2 md:text-base text-gray-dark"
             />
             <button
               className="text-sm md:text-base text-gray-dark self-end"

@@ -25,11 +25,11 @@ export default function Details({ product, relatedProducts }: DetailsProps) {
 
   return (
     <>
-      <div className="text-2xl flex flex-col md:flex-row md:gap-3 md:relative">
+      <div className="text-2xl flex flex-col md:flex-row md:relative">
         <img
           src={require(`../../public${imageUrl}?resize&size=1500`)}
           alt={`immagine di ${name}`}
-          className="rounded md:w-1/2 md:max-h-3/4 self-start md:sticky md:top-0"
+          className="rounded md:w-1/2 md:max-h-3/4 self-start md:sticky md:top-0 md:mr-4"
         />
         <div className="md:flex-1">
           <h1>{name}</h1>

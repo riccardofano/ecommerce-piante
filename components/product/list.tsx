@@ -14,7 +14,7 @@ export default function list({ title, products }: listProps) {
           {title}
         </h1>
       ) : null}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 row-gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 row-gap-4">
         {products
           ? products.map((product) => <Card key={product.sku} {...product} />)
           : null}
