@@ -33,7 +33,7 @@ export default function cart() {
   };
 
   return (
-    <Layout title={`Carrello (${cartCount})`}>
+    <Layout title={`Carrello${cartCount ? ` (${cartCount})` : ""}`}>
       <section className="container">
         <h1 className="font-bold text-xl md:text-2xl text-center mb-4">
           Carrello
