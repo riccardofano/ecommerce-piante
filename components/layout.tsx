@@ -14,6 +14,11 @@ export default function layout({ children, title }: layoutProps) {
         <meta lang="it" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{title}</title>
+        <meta
+          name="description"
+          content="Un sito d'esempio per e-commerce. Comprende server side rendering con next.js, typescript e integrazione con Stripe"
+        />
+        <meta name="robots" content="index, follow" />
       </Head>
 
       <div className="flex flex-col min-h-screen">
