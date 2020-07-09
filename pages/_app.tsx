@@ -1,11 +1,11 @@
 import { AppProps } from "next/app";
 import "../styles/index.css";
-import "react-toastify/dist/ReactToastify.css";
+// import "react-toastify/dist/ReactToastify.css";
 
 import { loadStripe } from "@stripe/stripe-js";
 import { CartProvider } from "use-shopping-cart";
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_API_PUBLIC);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_API_PUBLIC!);
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

@@ -34,5 +34,5 @@ module.exports = {
       },
     },
   },
-  purge: ["./pages/**/*.ts", "./src/components/**/*.ts"],
+  purge: ["./components/**/*.tsx", "./pages/**/*.tsx"],
 };

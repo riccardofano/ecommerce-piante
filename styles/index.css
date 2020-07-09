@@ -1,9 +1,12 @@
+/* purgecss start ignore */
 @tailwind base;
 @tailwind components;
+/* purgecss end ignore */
+
 @tailwind utilities;
 
+@import "~react-toastify/dist/ReactToastify.css";
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap");
-
 .categories div {
   @apply px-4 py-6 rounded bg-cover bg-center;
 }
