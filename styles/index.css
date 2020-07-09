@@ -10,7 +10,3 @@
 .categories div {
   @apply px-4 py-6 rounded bg-cover bg-center;
 }
-
-.footer ul li:hover a {
-  @apply underline;
-}

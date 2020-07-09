@@ -25,12 +25,14 @@ export default function footer() {
         <div className="mb-4 md:mb-0">
           <Link href="/about">
             <a>
-              <h1 className="font-bold uppercase hover:underline">Aiuto</h1>
+              <h1 className="font-bold uppercase hover:text-green-dark">
+                Aiuto
+              </h1>
             </a>
           </Link>
           <ul>
             {help.map((v, i) => (
-              <li key={i}>
+              <li key={i} className="hover:text-green-dark">
                 <Link href={`/about#${v.tag}`} key={i}>
                   <a>{v.title}</a>
                 </Link>
@@ -41,14 +43,16 @@ export default function footer() {
         <div>
           <Link href="/about#contacts">
             <a>
-              <h1 className="font-bold uppercase hover:underline">Contatti</h1>
+              <h1 className="font-bold uppercase hover:text-green-dark">
+                Contatti
+              </h1>
             </a>
           </Link>
           <ul>
             <li>Telefono: +39 1234 567 890</li>
             <li>Indirizzo: Via Roma, 1</li>
             <li>20121 Milano MI, Italia</li>
-            <li>
+            <li className="hover:text-green-dark">
               <a href="mailto:piante@example.it">email: piante@example.it</a>
             </li>
           </ul>
