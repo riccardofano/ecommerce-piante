@@ -16,7 +16,7 @@ interface homeProps {
 export default function Home({ products }: homeProps) {
   return (
     <>
-      <Layout>
+      <Layout title="Piante">
         <Hero />
         <div className="container">
           <Categories />

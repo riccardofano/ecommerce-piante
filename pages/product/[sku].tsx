@@ -16,7 +16,7 @@ export default function product({ product, relatedProducts }: productProps) {
   return (
     <>
       <ToastContainer />
-      <Layout>
+      <Layout title={product ? product.name : "Prodotto non trovato"}>
         <div className="container">
           {product ? (
             <Details product={product} relatedProducts={relatedProducts} />

@@ -4,15 +4,16 @@ import Head from "next/head";
 
 interface layoutProps {
   children: React.ReactNode;
+  title: string;
 }
 
-export default function layout({ children }: layoutProps) {
+export default function layout({ children, title }: layoutProps) {
   return (
     <>
       <Head>
         <meta lang="it" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Piante</title>
+        <title>{title}</title>
       </Head>
 
       <div className="flex flex-col min-h-screen">

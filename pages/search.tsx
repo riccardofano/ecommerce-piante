@@ -42,7 +42,7 @@ export default function Search({ types, products, totalPages }: SearchProps) {
   });
 
   return (
-    <Layout>
+    <Layout title="Ricerca">
       <div className="container">
         <h1 className="font-bold text-center text-xl md:text-2xl mb-4">
           {getAsString(query.search) || "Risultati della ricerca"}

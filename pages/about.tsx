@@ -1,4 +1,5 @@
 import Navbar from "../components/navbar";
+import Head from "next/head";
 
 export default function About() {
   const faq = [
@@ -33,6 +34,11 @@ export default function About() {
   ];
   return (
     <>
+      <Head>
+        <meta lang="it" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Domande frequenti e contatti</title>
+      </Head>
       <Navbar />
       <div className="container mb-20">
         <h1 className="font-bold text-xl md:text-2xl mt-10 mb-4">

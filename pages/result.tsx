@@ -16,7 +16,15 @@ const ResultPage: NextPage = () => {
   const { data } = useSWR(`/api/checkout/${router.query.session_id}`, fetcher);
 
   return (
-    <Layout>
+    <Layout
+      title={
+        data?.statusCode === 500
+          ? "Qualcosa è andato storto"
+          : data
+          ? "Pagamento riuscito"
+          : "Caricamento..."
+      }
+    >
       <div className="container">
         {data?.statusCode === 500 ? (
           <>
