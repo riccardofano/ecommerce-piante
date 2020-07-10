@@ -1,7 +1,6 @@
 import { ParsedUrlQuery } from "querystring";
 import inventory from "../data/inventory.json";
 import { getAsString } from "./get-as-string";
-import { CLIENT_RENEG_LIMIT } from "tls";
 
 export function getPaginatedProducts(query: ParsedUrlQuery) {
   const page = getValueNumber(query.page) || 1;
@@ -9,15 +8,15 @@ export function getPaginatedProducts(query: ParsedUrlQuery) {
   const offset = (page - 1) * rowsPerPage;
 
   const type = getValueStr(query.type);
-  const price = getValueNumber(query.price) * 100 || 99999;
-  const dimension = getValueNumber(query.dimensions) || 99999;
+  const price = getValueNumber(query.price) * 100 || null;
+  const dimension = getValueNumber(query.dimensions) || null;
   const search = getValueOrEmpty(query.search);
 
   const filteredProducts = inventory.filter((product) => {
     return (
       (type ? product.type === type : true) &&
-      product.price <= price &&
-      product.dimension <= dimension &&
+      (price ? product.price <= price : true) &&
+      (dimension ? product.dimension <= dimension : true) &&
       product.name.includes(search)
     );
   });
