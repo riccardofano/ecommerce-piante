@@ -99,7 +99,7 @@ export default function Search({ types, products, totalPages }: SearchProps) {
             </div>
           )
         ) : (
-          <h1>No data</h1>
+          <h1>Loading...</h1>
         )}
       </div>
     </Layout>
