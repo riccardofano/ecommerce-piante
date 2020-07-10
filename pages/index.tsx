@@ -1,7 +1,6 @@
-import Head from "next/head";
 import { GetServerSideProps } from "next";
-import { openDB } from "../utils/openDB";
 import { Product } from "../model/product";
+import inventory from "../data/inventory.json";
 
 import Layout from "../components/layout";
 import Hero from "../components/hero";
@@ -32,10 +31,6 @@ export default function Home({ products }: homeProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const db = await openDB();
-  const products = await db.all(
-    "SELECT * FROM Product ORDER BY ROWID ASC LIMIT 4"
-  );
-
+  const products = inventory.slice(0, 4);
   return { props: { products } };
 };

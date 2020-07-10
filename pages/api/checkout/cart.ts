@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 import { validateCartItems } from "use-shopping-cart/src/serverUtil";
 import { Product } from "use-shopping-cart";
-import { openDB } from "../../../utils/openDB";
+import inventory from "../../../data/inventory.json";
 
 import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -15,20 +15,18 @@ export default async function handler(
 ) {
   if (req.method === "POST") {
     try {
-      const db = await openDB();
-      const products = await db.all("SELECT * FROM Product");
-      const inventory: Product[] = products.map((p) => {
+      const products: Product[] = inventory.map((p) => {
         return {
           sku: p.sku.toString(),
           name: p.name,
-          price: p.salePrice ? p.salePrice : p.price,
+          price: p.price,
           currency: p.currency,
         };
       });
 
       // Validate the cart details that were sent from the client.
       const cartItems = req.body;
-      const line_items = validateCartItems(inventory, cartItems);
+      const line_items = validateCartItems(products, cartItems);
       // Create Checkout Sessions from body params.
       const params: Stripe.Checkout.SessionCreateParams = {
         submit_type: "pay",

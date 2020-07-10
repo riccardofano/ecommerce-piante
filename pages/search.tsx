@@ -1,4 +1,4 @@
-import { Type, getTypes } from "../utils/search-options-helpers";
+import { getTypes } from "../utils/search-options-helpers";
 import { getPaginatedProducts } from "../utils/paginated-products";
 import { getAsString } from "../utils/get-as-string";
 
@@ -17,7 +17,7 @@ import { Formik } from "formik";
 import Layout from "../components/layout";
 
 interface SearchProps {
-  types: Type[];
+  types: string[];
   products: Product[];
   totalPages: number;
 }
@@ -65,33 +65,39 @@ export default function Search({ types, products, totalPages }: SearchProps) {
           )}
         </Formik>
         {data ? (
-          <div className="mt-4">
-            <List products={data.products} />
-            <div className="flex items-center mt-10">
-              {new Array(data.totalPages).fill(1).map((_, id) => (
-                <Link
-                  key={id}
-                  href={{
-                    pathname: "/search",
-                    query: { ...query, page: id + 1 },
-                  }}
-                >
-                  <a>
-                    <p
-                      className={`w-6 h-6 mr-2 text-center text-base md:text-lg leading-6 ${
-                        parseInt(getAsString(query.page) || "1") === id + 1
-                          ? "bg-green-dark text-white rounded hover:bg-green-light"
-                          : "hover:underline"
-                      }
+          data.products.length === 0 ? (
+            <h1 className="mt-10 font-bold text-xl md:text-2xl text-center">
+              Nessun risultato
+            </h1>
+          ) : (
+            <div className="mt-4">
+              <List products={data.products} />
+              <div className="flex items-center mt-10">
+                {new Array(data.totalPages).fill(1).map((_, id) => (
+                  <Link
+                    key={id}
+                    href={{
+                      pathname: "/search",
+                      query: { ...query, page: id + 1 },
+                    }}
+                  >
+                    <a>
+                      <p
+                        className={`w-6 h-6 mr-2 text-center text-base md:text-lg leading-6 ${
+                          parseInt(getAsString(query.page) || "1") === id + 1
+                            ? "bg-green-dark text-white rounded hover:bg-green-light"
+                            : "hover:underline"
+                        }
                     `}
-                    >
-                      {id + 1}
-                    </p>
-                  </a>
-                </Link>
-              ))}
+                      >
+                        {id + 1}
+                      </p>
+                    </a>
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
+          )
         ) : (
           <h1>No data</h1>
         )}
@@ -101,10 +107,8 @@ export default function Search({ types, products, totalPages }: SearchProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const [types, { products, totalPages }] = await Promise.all([
-    getTypes(),
-    getPaginatedProducts(ctx.query),
-  ]);
+  const types = getTypes();
+  const { products, totalPages } = getPaginatedProducts(ctx.query);
 
   return { props: { types, products, totalPages } };
 };

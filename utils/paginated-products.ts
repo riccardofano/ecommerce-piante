@@ -1,62 +1,48 @@
 import { ParsedUrlQuery } from "querystring";
-import { openDB } from "./openDB";
+import inventory from "../data/inventory.json";
 import { getAsString } from "./get-as-string";
-import { Product } from "../model/product";
+import { CLIENT_RENEG_LIMIT } from "tls";
 
-const mainQuery = `
-    FROM Product
-    WHERE (@search is NULL OR INSTR(LOWER(name), LOWER(@search)))
-    AND (@type is NULL OR @type = type)
-    AND (@price is NULL OR @price >= price)
-    AND (@dimension is NULL OR @dimension >= dimension)
-`;
-
-export async function getPaginatedProducts(query: ParsedUrlQuery) {
-  const db = await openDB();
-
+export function getPaginatedProducts(query: ParsedUrlQuery) {
   const page = getValueNumber(query.page) || 1;
   const rowsPerPage = getValueNumber(query.rowsPerPage) || 3;
   const offset = (page - 1) * rowsPerPage;
 
-  const dbParams = {
-    "@type": getValueStr(query.type),
-    "@price":
-      getValueNumber(query.price) === null
-        ? null
-        : getValueNumber(query.price)! * 100,
-    "@dimension": getValueNumber(query.dimensions),
-    "@search": getValueStr(query.search),
+  const type = getValueStr(query.type);
+  const price = getValueNumber(query.price) * 100 || 99999;
+  const dimension = getValueNumber(query.dimensions) || 99999;
+  const search = getValueOrEmpty(query.search);
+
+  const filteredProducts = inventory.filter((product) => {
+    return (
+      (type ? product.type === type : true) &&
+      product.price <= price &&
+      product.dimension <= dimension &&
+      product.name.includes(search)
+    );
+  });
+
+  const pageProducts = filteredProducts.slice(offset, offset + rowsPerPage);
+  const totalRows = filteredProducts.length;
+
+  return {
+    products: pageProducts,
+    totalPages: Math.ceil(totalRows / rowsPerPage),
   };
-
-  const productPromise = db.all<Product[]>(
-    `SELECT * ${mainQuery} LIMIT @rowsPerPage OFFSET @offset`,
-    {
-      ...dbParams,
-      "@rowsPerPage": rowsPerPage,
-      "@offset": offset,
-    }
-  );
-
-  const totalRowsPromise = db.get<{ count: number }>(
-    `SELECT COUNT(*) as count ${mainQuery}`,
-    dbParams
-  );
-
-  const [products, totalRows] = await Promise.all([
-    productPromise,
-    totalRowsPromise,
-  ]);
-
-  return { products, totalPages: Math.ceil(totalRows!.count / rowsPerPage) };
 }
 
 function getValueNumber(value: string | string[] | undefined) {
   const str = getValueStr(value);
   const number = parseInt(str!);
-  return isNaN(number) ? null : number;
+  return isNaN(number) ? 0 : number;
 }
 
 function getValueStr(value: string | string[] | undefined) {
   const str = getAsString(value);
   return !str || str.toLowerCase() === "all" ? null : str;
+}
+
+function getValueOrEmpty(value: string | string[] | undefined) {
+  const str = getAsString(value);
+  return !str || str.toLowerCase() === "all" ? "" : str;
 }

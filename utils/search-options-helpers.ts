@@ -1,16 +1,6 @@
-import { openDB } from "./openDB";
+import data from "../data/inventory.json";
 
-export interface Type {
-  type: string;
-  count: number;
-}
-
-export async function getTypes() {
-  const db = await openDB();
-  const types = await db.all(`
-    SELECT type, count(*) as count
-    FROM Product
-    GROUP BY type
-    `);
-  return types;
+export function getTypes() {
+  let types = [...new Set(data.map((product) => product.type))];
+  return types; // [ "grassa", "fiorita", "aromatica" ]
 }

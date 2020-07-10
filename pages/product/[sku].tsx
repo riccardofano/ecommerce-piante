@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next";
-import { openDB } from "../../utils/openDB";
+import inventory from "../../data/inventory.json";
 import { Product } from "../../model/product";
 
 import Layout from "../../components/layout";
@@ -42,22 +42,13 @@ export default function product({ product, relatedProducts }: productProps) {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const sku = ctx.params?.sku;
-  const db = await openDB();
-  const product = await db.get<Product | undefined>(
-    "SELECT * FROM Product where sku = ?",
-    sku
-  );
+  const product = sku
+    ? inventory.filter((p) => p.sku.toString() === sku)[0]
+    : null;
 
-  const relatedProducts = await db.all<Product[] | undefined>(
-    `SELECT * FROM Product
-     WHERE (@type = type)
-     AND NOT (@sku = sku)
-     ORDER BY ROWID ASC LIMIT 4`,
-    {
-      "@type": product?.type,
-      "@sku": product?.sku,
-    }
-  );
+  const relatedProducts = product
+    ? inventory.filter((p) => p.type === product.type)
+    : [];
 
-  return { props: { product: product || null, relatedProducts } };
+  return { props: { product, relatedProducts } };
 };

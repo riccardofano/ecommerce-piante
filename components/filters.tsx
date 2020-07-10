@@ -1,10 +1,9 @@
 import Select from "./select";
 import { Field } from "formik";
-import { Type } from "../utils/search-options-helpers";
 
 interface FiltersInterface {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  types: Type[];
+  types: string[];
 }
 
 export default function Filters({ types, handleSubmit }: FiltersInterface) {
@@ -28,8 +27,8 @@ export default function Filters({ types, handleSubmit }: FiltersInterface) {
   const typeOptions = [
     { value: "all", label: "Tipologia" },
     ...types.map((v) => ({
-      value: v.type,
-      label: `Pianta ${v.type}`,
+      value: v,
+      label: `Pianta ${v}`,
     })),
   ];
 
