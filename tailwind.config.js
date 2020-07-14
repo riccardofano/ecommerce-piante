@@ -17,6 +17,10 @@ module.exports = {
         "768": "calc(768px - 5rem)",
         "1024": "calc(1024px - 5rem)",
       },
+      height: {
+        "72": "25rem",
+        "80": "32rem",
+      },
       colors: {
         white: "#ffffff",
         gray: {
@@ -33,6 +37,9 @@ module.exports = {
         "inner-lg": "inset 0 0px 45px 0 rgba(0, 0, 0, 0.2)",
       },
     },
+  },
+  variants: {
+    margin: ["responsive", "last"],
   },
   purge: ["./components/**/*.tsx", "./pages/**/*.tsx"],
 };

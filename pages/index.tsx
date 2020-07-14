@@ -19,10 +19,6 @@ export default function Home({ products }: homeProps) {
         <Hero />
         <div className="container">
           <Categories />
-          <Delivery
-            title="Spedizione gratuita"
-            subtitle="su tutti i nostri prodotti con importo superiore a 10,00€"
-          />
           <ProductList title="Nuovi prodotti" products={products} />
         </div>
       </Layout>
