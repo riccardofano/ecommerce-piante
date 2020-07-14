@@ -40,14 +40,14 @@ export default function Filters({ types, handleSubmit }: FiltersInterface) {
       {/* TODO: put search field in navbar */}
       {/* <Field placeholder="Cerca prodotto" name="search" /> */}
       <Field
-        className="flex-1 mr-4"
+        className="flex-1 mb-2 md:mr-4"
         name="type"
         component={Select}
         options={typeOptions}
         submit
       />
       <Field
-        className="flex-1 mr-4"
+        className="flex-1 mb-2 md:mr-4"
         name="price"
         component={Select}
         options={priceOptions}
