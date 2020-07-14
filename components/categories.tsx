@@ -35,7 +35,7 @@ export default function Categories() {
         <Link key={v.keyword} href={`/search?type=${v.keyword}`}>
           <div className="flex md:flex-col mb-4 md:mr-4 last:mb-0 md:last:mr-0 md:mb-0 items-center hover:underline cursor-pointer">
             <img
-              className="w-24 h-32 md:w-full mr-4 md:mr-0 md:h-72 object-cover rounded self-stretch"
+              className="w-24 md:w-full h-32 md:h-64 lg:h-72 mr-4 md:mr-0 object-cover rounded self-stretch"
               src={v.img}
             />
             <div>
