@@ -32,23 +32,20 @@ export default function Categories() {
   return (
     <section className="flex flex-col md:flex-row mt-10 categories">
       {catagories.map((v) => (
-        <div
-          key={v.keyword}
-          className="flex md:flex-col mb-4 md:mr-4 last:mb-0 md:last:mr-0 md:mb-0 items-center"
-        >
-          <img
-            className="w-24 h-32 md:w-full mr-4 md:mr-0 md:h-72 object-cover rounded self-stretch"
-            src={v.img}
-          />
-          <Link href={`/search?type=${v.keyword}`}>
-            <a>
-              <h2 className="font-bold text-lg md:text-xl hover:underline md:mt-2">
+        <Link key={v.keyword} href={`/search?type=${v.keyword}`}>
+          <div className="flex md:flex-col mb-4 md:mr-4 last:mb-0 md:last:mr-0 md:mb-0 items-center hover:underline cursor-pointer">
+            <img
+              className="w-24 h-32 md:w-full mr-4 md:mr-0 md:h-72 object-cover rounded self-stretch"
+              src={v.img}
+            />
+            <div>
+              <h2 className="font-bold text-lg md:text-xl md:mt-2 hover:underline">
                 {v.title}
               </h2>
               <p className="text-base md:text-lg leading-tight">{v.text}</p>
-            </a>
-          </Link>
-        </div>
+            </div>
+          </div>
+        </Link>
       ))}
     </section>
   );
