@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-const fiorite = require("../public/fiorite.jpg?resize=500");
-const grasse = require("../public/grasse.jpg?resize=500");
-const aromatiche = require("../public/aromatiche.jpg?resize=500");
+const fiorite = require("../public/fiorite.jpg?resize&size=500");
+const grasse = require("../public/grasse.jpg?resize&size=500");
+const aromatiche = require("../public/aromatiche.jpg?resize&size=500");
 
 export default function Categories() {
   const catagories = [
