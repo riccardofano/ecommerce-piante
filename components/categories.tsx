@@ -37,6 +37,7 @@ export default function Categories() {
             <img
               className="w-24 md:w-full h-32 md:h-64 lg:h-72 mr-4 md:mr-0 object-cover rounded self-stretch"
               src={v.img}
+              alt={v.title}
             />
             <div>
               <h2 className="font-bold text-lg md:text-xl md:mt-2 hover:underline">
