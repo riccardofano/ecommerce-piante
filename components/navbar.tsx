@@ -22,8 +22,8 @@ export default function Navbar() {
       </h1>
       <div className="flex">
         <Link href="/search">
-          <a title="Cerca..." className="hover:text-green-dark">
-            <InlineIcon className="mr-2 md:mr-6" icon={searchLine} />
+          <a title="Cerca..." className="hover:text-green-dark mr-4 md:mr-6">
+            <InlineIcon icon={searchLine} />
           </a>
         </Link>
         <Link href="/cart">
